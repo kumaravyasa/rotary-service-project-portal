@@ -49,55 +49,65 @@
 
   /* LAYOUT */
   .wrap{width:100%; margin:0; padding:20px 24px;}
-  .grid{display:grid; grid-template-columns:260px minmax(0,1fr) 320px; gap:20px; width:100%;}
+ .grid{
+  display:grid;
+  grid-template-columns:260px 1fr 320px;   /* left | center | right */
+  grid-template-areas:
+    "left  center right"
+    "left2 center right";                  /* left events under focus; center starts at top */
+  gap:20px;
+}
+
+/* Place items into those areas */
+.left-nav   { grid-area: left;  align-self:start; }
+.events-left{ grid-area: left2; align-self:start; }
+.center-col { grid-area: center; align-self:start; }
+.side       { grid-area: right; align-self:start; }
+
+/* Responsive: single column stack */
+@media (max-width:1100px){
+  .grid{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "left"
+      "left2"
+      "center"
+      "right";
+  }
+}
 
   /* CARDS */
   .card{background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);}
-  .card.pad{padding:14px;}
-  .card .hd{padding:14px 16px; border-bottom:1px solid var(--border); font-weight:800; color:var(--blue-900);}
+  .card.pad{padding:5px;}
+  .card .hd{padding:5px; border-bottom:1px solid var(--border); font-weight:800; color:var(--blue-900);}
 
   /* LEFT: FOCUS */
-  .focus{padding:12px 12px 16px;}
+  .left-nav .hd{padding:10px 12px;}
+  .left-nav .focus{padding:40px 40px 40px;}
   .chip{
     background:var(--chip); border:1px solid var(--chip-border);
-    padding:12px; border-radius:12px; margin-bottom:10px;
-    font-weight:600; color:#1e293b; cursor:pointer; transition:.25s ease;
-    display:flex; gap:10px; align-items:flex-start;
+    padding:10px 11px; border-radius:10px; margin-bottom:8px;
+    font-weight:600; color:#1e293b; cursor:pointer; transition:.2s ease;
+    display:flex; gap:8px; align-items:flex-start; font-size:14px;
   }
-  .chip::before{content:"•"; color:var(--blue-900); font-size:20px; line-height:1.2;}
+  .chip::before{content:"•"; color:var(--blue-900); font-size:16px; line-height:1.1;}
   .chip:hover{background:#4338ca; color:#fff; border-color:#4338ca;}
   .chip.active{background:#2563eb; color:#fff; border-color:#1e40af;}
 
+  /* LEFT: Upcoming Events card */
+  .events-left .hd{border:0; padding:0 0 8px 0;}
+  .events-left ul{margin:8px 0 0 18px; padding:0;}
+  .events-left li{margin-bottom:6px;}
+
   /* CENTER: HEADING + SEARCH + PROJECTS */
   .center-col{display:flex; flex-direction:column; gap:12px;}
-
-  /* Header row with images left & right */
   .projects-head{padding:4px 0 6px;}
-  .projects-head-grid{
-    display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:16px;
-  }
-  .projects-head-grid h1{
-    margin:0; text-align:center;
-    font-size:clamp(26px,3vw,34px); font-weight:800; color:var(--blue-900);
-  }
-  .leader{
-  width:88px;
-  height:88px;
-  object-fit:cover;
-  border-radius:10px;
-  box-shadow:0 4px 14px rgba(0,0,0,.15);
-  border:2px solid #fff;
-}
-
-  /* Search bar under the header */
-  .search-under{
-    display:flex; gap:10px; align-items:center; justify-content:center;
-    width:100%; margin-top:10px;
-  }
+  .projects-head-grid{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:16px;}
+  .projects-head-grid h1{margin:0; text-align:center; font-size:clamp(26px,3vw,34px); font-weight:800; color:var(--blue-900);}
+  .leader{width:88px; height:88px; object-fit:cover; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.15); border:2px solid #fff;}
+  .search-under{display:flex; gap:10px; align-items:center; justify-content:center; width:100%; margin-top:10px;}
   .input{flex:0 1 min(760px,92%); border:1px solid var(--border); border-radius:999px; padding:10px 14px; outline:none;}
   .projects{padding:14px 16px;}
-
-  /* Project item */
   .project{
     display:grid; grid-template-columns:34px 120px 1fr; gap:14px; padding:14px;
     border:1px solid var(--border); border-radius:14px; margin-bottom:12px; background:#fff;
@@ -109,10 +119,62 @@
   .brief{font-size:14px;}
   .pagination{text-align:center; padding:6px 0 2px; color:#6b7280; font-weight:700;}
 
-  /* RIGHT: FLYERS + EVENTS */
+  /* RIGHT: ASIDE */
   .side{display:grid; gap:16px; align-content:start; padding:14px;}
   .side img{width:100%; height:auto; display:block; border-radius:12px;}
   .events ul{margin:8px 0 0 18px; padding:0;} .events li{margin-bottom:6px;}
+
+  /* ==== CALENDAR WIDGET ==== */
+  .calendar-widget{
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    background:#fff;
+  }
+  .cw-header{
+    display:flex; align-items:center; justify-content:space-between;
+    background:#0f3a78; color:#fff; padding:10px 12px;
+  }
+  .cw-title{ font-weight:800; }
+  .cw-nav{
+    background:transparent; border:0; color:#ffd166;
+    font-size:18px; width:32px; height:32px;
+    border-radius:50%; cursor:pointer;
+  }
+  .cw-nav:hover{ background:rgba(255,255,255,.12); }
+
+  .cw-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    border-top:1px solid var(--border);
+  }
+  .cw-dow{
+    text-align:center; font-weight:700; color:#64748b;
+    background:#f8fafc; padding:10px 0;
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .cw-dow:nth-child(7n){ border-right:0; }
+
+  .cw-day{
+    position:relative;
+    height:64px;
+    display:flex; align-items:flex-start; justify-content:flex-end;
+    padding:6px 8px;
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    font-weight:600;
+  }
+  .cw-day:nth-child(7n){ border-right:0; }
+  .cw-day.other{ color:#cbd5e1; font-weight:500; }
+  .cw-day:hover{ background:#f7fafc; }
+  .cw-day.today{ outline:2px solid #0f3a78; outline-offset:-2px; background:#eef2ff; color:#0f3a78; }
+  .cw-badge{ position:absolute; left:8px; top:6px; font-size:10px; font-weight:800; color:#0f3a78; }
+  .cw-dots{ position:absolute; left:8px; bottom:6px; display:flex; gap:6px; }
+  .cw-dot{ width:6px; height:6px; border-radius:50%; }
+  .cw-dot.green{ background:#22c55e; }
+  .cw-dot.red{ background:#ef4444; }
 
   /* FOOTER */
   .footer{margin-top:18px; display:grid; gap:18px;}
@@ -163,7 +225,7 @@
     <div class="grid">
 
       <!-- LEFT: FOCUS AREAS -->
-      <aside class="card">
+      <aside class="card left-nav">
         <div class="hd">Rotary 7 Focus Area</div>
         <div class="focus">
           <div class="chip" data-focus="peace">Peace Building & Conflict Prevention</div>
@@ -174,12 +236,22 @@
           <div class="chip" data-focus="economic">Community Economic Development</div>
           <div class="chip" data-focus="environment">Protecting Our Environment</div>
         </div>
-      </aside>
+     
+      <!-- LEFT: Upcoming Events (boxed) -->
+      <div class="card pad events-left">
+        <div class="hd" style="border:0; padding:0 0 8px 0;">Upcoming Events</div>
+        <ul>
+          <li>Rotary Talent Hunt</li>
+          <li>RISE – Dandiya Night</li>
+          <li>End Polio Awareness Week</li>
+          <li>RISE – Musical Night</li>
+          <li>Ambari Dist. Conference</li>
+        </ul>
+      </div> </aside>
 
       <!-- CENTER: HEADING + SEARCH + PROJECTS -->
       <div class="center-col">
 
-        <!-- Heading row WITH TWO IMAGES -->
         <div class="projects-head">
           <div class="projects-head-grid">
             <img src="images/anil.png" alt="Leader Left" class="leader">
@@ -187,14 +259,12 @@
             <img src="images/pres.png" alt="Leader Right" class="leader">
           </div>
 
-          <!-- Search below heading -->
-          <div class="search-under">
-            <input class="input" type="text" placeholder="Search a service..." />
-            <button class="btn">Search</button>
-          </div>
+        <div class="search-under">
+          <input class="input" type="text" placeholder="Search a service..." />
+          <button class="btn">Search</button>
+        </div>
         </div>
 
-        <!-- Projects -->
         <section class="card">
           <div class="projects">
             <article class="project" data-focus="water">
@@ -227,25 +297,27 @@
         </section>
       </div>
 
-      <!-- RIGHT: 2 FLYERS + EVENTS -->
+      <!-- RIGHT: 2 FLYERS + CALENDAR -->
       <aside class="card side">
         <div class="card pad"><img src="images/imag2.png" alt="Rotary Flyer 1"></div>
         <div class="card pad"><img src="images/img3.png" alt="Rotary Flyer 2"></div>
-        <div class="card pad events">
-          <div class="hd" style="border:0; padding:0 0 8px 0;">Upcoming Events</div>
-          <ul>
-            <li>Rotary Talent Hunt</li>
-            <li>RISE – Dandiya Night</li>
-            <li>End Polio Awareness Week</li>
-            <li>RISE – Musical Night</li>
-            <li>Ambari Dist. Conference</li>
-          </ul>
+
+        <div class="card pad">
+           <div class="hd" style="border:0; padding:0 0 8px 0;">DG CALENDAR</div>
+          <div class="calendar-widget">
+            <div class="cw-header">
+              <button class="cw-nav" id="cw-prev" aria-label="Previous month">❮</button>
+              <div class="cw-title" id="cw-title">Month YYYY</div>
+              <button class="cw-nav" id="cw-next" aria-label="Next month">❯</button>
+            </div>
+            <div class="cw-grid" id="cw-grid"></div>
+          </div>
         </div>
       </aside>
 
     </div>
 
-    <!-- FOOTER (3 Important Links + Contact) -->
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="cols">
         <div class="col">
@@ -284,24 +356,103 @@
     </footer>
   </main>
 
-  <!-- JS -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Focus chip active toggle
-      const chips = document.querySelectorAll('.chip');
-      chips.forEach(chip => {
-        chip.addEventListener('click', () => {
-          chips.forEach(c => c.classList.remove('active'));
-          chip.classList.add('active');
+<script>
+/* Focus chip active toggle (optional filter ready) */
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    // const focus = chip.dataset.focus;
+    // document.querySelectorAll('.project').forEach(p=>{
+    //   p.style.display = (!focus || p.dataset.focus===focus) ? 'grid' : 'none';
+    // });
+  });
+});
 
-          // Optional: filter projects by data-focus (uncomment to use)
-          // const focus = chip.dataset.focus;
-          // document.querySelectorAll('.project').forEach(p => {
-          //   p.style.display = (p.dataset.focus === focus) ? 'grid' : 'none';
-          // });
-        });
-      });
+/* ===== Calendar widget ===== */
+(function(){
+  const titleEl = document.getElementById('cw-title');
+  const gridEl  = document.getElementById('cw-grid');
+  const prevBtn = document.getElementById('cw-prev');
+  const nextBtn = document.getElementById('cw-next');
+  if(!titleEl || !gridEl) return;
+
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const DOW    = ['M','T','W','T','F','S','S']; // Monday-first
+
+  // Example dots; add like: '2025-10-04': ['green','red']
+  const EVENTS = {};
+
+  let view = new Date();
+
+  function render(){
+    titleEl.textContent = `${MONTHS[view.getMonth()]} ${view.getFullYear()}`;
+    gridEl.innerHTML = '';
+
+    // Weekday row
+    DOW.forEach(d=>{
+      const h = document.createElement('div');
+      h.className = 'cw-dow';
+      h.textContent = d;
+      gridEl.appendChild(h);
     });
-  </script>
+
+    const y = view.getFullYear();
+    const m = view.getMonth();
+
+    const first = new Date(y, m, 1);
+    const sunBased = first.getDay();            // Sun=0..Sat=6
+    const monBased = (sunBased + 6) % 7;        // Mon=0..Sun=6
+
+    const daysInMonth   = new Date(y, m+1, 0).getDate();
+    const prevMonthDays = new Date(y, m,   0).getDate();
+
+    // leading (prev month)
+    for(let i=monBased-1;i>=0;i--){
+      gridEl.appendChild(dayCell(prevMonthDays - i, true, y, m-1));
+    }
+    // current month
+    for(let d=1; d<=daysInMonth; d++){
+      gridEl.appendChild(dayCell(d, false, y, m));
+    }
+    // trailing to complete rows
+    while(gridEl.children.length % 7 !== 0){
+      const c = dayCell('', true, y, m+1); c.textContent = ''; gridEl.appendChild(c);
+    }
+  }
+
+  function pad(n){return n<10?'0'+n:''+n;}
+
+  function dayCell(day, other, y, m){
+    const el = document.createElement('div');
+    el.className = 'cw-day' + (other ? ' other':'');
+    el.appendChild(document.createTextNode(day));
+
+    const t = new Date();
+    if(!other && day===t.getDate() && m===t.getMonth() && y===t.getFullYear()){
+      el.classList.add('today');
+      const b = document.createElement('div');
+      b.className='cw-badge'; b.textContent='TODAY';
+      el.appendChild(b);
+    }
+
+    const dots = document.createElement('div');
+    dots.className = 'cw-dots';
+    const iso = y + '-' + pad(m+1) + '-' + pad(day);
+    (EVENTS[iso]||[]).forEach(c=>{
+      const dot = document.createElement('span');
+      dot.className = 'cw-dot ' + (c==='red'?'red':'green');
+      dots.appendChild(dot);
+    });
+    el.appendChild(dots);
+
+    return el;
+  }
+
+  document.getElementById('cw-prev')?.addEventListener('click',()=>{view.setMonth(view.getMonth()-1);render();});
+  document.getElementById('cw-next')?.addEventListener('click',()=>{view.setMonth(view.getMonth()+1);render();});
+  render();
+})();
+</script>
 </body>
 </html>
