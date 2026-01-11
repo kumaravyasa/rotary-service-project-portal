@@ -7,295 +7,88 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --blue:#123d8b;
-    --blue-900:#0f2d66;
-    --light:#f5f7fb;
-    --card:#ffffff;
-    --text:#1f2a37;
-    --muted:#6b7280;
-    --border:#e5e7eb;
-    --chip:#eef2ff;
-    --chip-border:#c7d2fe;
-    --radius:16px;
-    --shadow:0 6px 18px rgba(17,24,39,.08);
-  }
-  *{box-sizing:border-box;}
-  html,body{height:100%;}
-  body{
-    margin:0;
-    font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-    color:var(--text);
-    background:var(--light);
-    line-height:1.45;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-  }
+ :root{
+  --blue:#123d8b;
+  --blue-900:#0f2d66;
+  --light:#f5f7fb;
+  --card:#ffffff;
+  --text:#1f2a37;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --chip:#eef2ff;
+  --chip-border:#c7d2fe;
+  --radius:16px;
+  --shadow:0 6px 18px rgba(17,24,39,.08);
 
-  /* TOP BAR */
-  .topbar{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:10px 18px; background:#fff; border-bottom:1px solid var(--border);
-    position:sticky; top:0; z-index:20;
-  }
-  .logos{display:flex; align-items:center; gap:10px;}
-  .logo{height:40px; width:auto; object-fit:contain;}
-  .title-center{flex:1; text-align:center; font-weight:800; font-size:20px; color:var(--blue-900);}
-  .user{display:flex; align-items:center; gap:12px;}
-  .avatar{width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#fde68a,#f59e0b); display:grid; place-items:center; color:#111; font-weight:800;}
-  .btn{border:1px solid var(--border); background:#fff; padding:8px 14px; border-radius:999px; font-weight:600; cursor:pointer; box-shadow:var(--shadow);}
-
-  /* BANNER */
-  .banner-full{
-  width:100%;
-  height:500px;
-  display:block;
+  /* NEW (for banner button) */
+  --cta-red:#e11d2e;
 }
 
-  /* LOGO SLIDER BELOW BANNER */
-  
-/* LOGO SLIDER BELOW BANNER */
-/* LOGO SLIDER BELOW BANNER */
-/* LOGO SLIDER BELOW BANNER */
-.logo-slider{
-  background:#f3f4f6;
-  padding:16px 0;
+*{box-sizing:border-box;}
+html,body{height:100%;}
+
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color:var(--text);
+  background:var(--light);
+  line-height:1.45;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
-.logo-rail{
-  max-width:1200px;
-  margin:0 auto;
-  background:#ffffff;
-  border-radius:20px;
+/* TOP BAR */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 18px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+}
+.logos{display:flex; align-items:center; gap:10px;}
+.logo{height:40px; width:auto; object-fit:contain;}
+.title-center{
+  flex:1;
+  text-align:center;
+  font-weight:800;
+  font-size:20px;
+  color:var(--blue-900);
+}
+.user{display:flex; align-items:center; gap:12px;}
+.btn{
   border:1px solid var(--border);
+  background:#fff;
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:600;
+  cursor:pointer;
   box-shadow:var(--shadow);
-  overflow:hidden;              /* one big box */
 }
 
-/* moving strip inside the box */
-.logo-track{
-  display:flex;
-  align-items:center;
-  gap:32px;
-  padding:16px 32px;
-  animation:logo-scroll 22s linear infinite;
-}
-
-/* pause animation on hover anywhere on the big box */
-.logo-rail:hover .logo-track{
-  animation-play-state:paused;
-}
-
-.logo-box{
-  flex:0 0 160px;               /* logo card width */
-  height:80px;
-  background:#ffffff;
-  border-radius:16px;
-  border:1px solid #d1d5db;
-  box-shadow:0 4px 10px rgba(0,0,0,0.05);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-}
-
-.logo-box img{
-  display:block;
-  max-width:90%;
-  max-height:70px;
-  object-fit:contain;
-}
-
-/* marquee-style sliding */
-@keyframes logo-scroll{
-  0%{ transform:translateX(0); }
-  100%{ transform:translateX(-50%); }
-}
-
-/* small screens: slightly smaller logos */
-@media (max-width:600px){
-  .logo-box{
-    flex:0 0 130px;
-    height:70px;
-  }
-}
-
-
-  /* MAIN LAYOUT */
-  main.wrap{
-    width:100%;
-    margin:0;
-    padding:20px 24px;
-    flex:1;
-    display:flex;
-    flex-direction:column;
-  }
-
-  .grid{
-    flex:1;
-    display:grid;
-    grid-template-columns:260px 1fr;  /* left | center */
-    gap:20px;
-    align-items:start;
-  }
-
-  /* CARDS */
-  .card{background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);}
-  .card.pad{padding:5px;}
-  .card .hd{padding:5px; border-bottom:1px solid var(--border); font-weight:800; color:var(--blue-900);}
-
-  /* LEFT: FOCUS */
-  .left-nav .hd{padding:10px 12px;}
-  .left-nav .focus{padding:40px 40px 40px;}
-  .chip{
-    background:var(--chip); border:1px solid var(--chip-border);
-    padding:10px 11px; border-radius:10px; margin-bottom:8px;
-    font-weight:600; color:#1e293b; cursor:pointer; transition:.2s ease;
-    display:flex; gap:8px; align-items:flex-start; font-size:14px;
-  }
-  .chip::before{content:"•"; color:var(--blue-900); font-size:16px; line-height:1.1;}
-  .chip:hover{background:#4338ca; color:#fff; border-color:#4338ca;}
-  .chip.active{background:#2563eb; color:#fff; border-color:#1e40af;}
-
-  /* LEFT: Upcoming Events card */
-  .events-left{margin:0 16px 16px;}
-  .events-left .hd{border:0; padding:0 0 8px 0;}
-  .events-left ul{margin:8px 0 0 18px; padding:0;}
-  .events-left li{margin-bottom:6px;}
-
-  /* Mini calendar inside Upcoming Events */
-  .mini-cal{
-    margin-top:10px;
-    border-top:1px solid var(--border);
-    padding-top:10px;
-    font-size:12px;
-  }
-  .mini-cal-head{
-    text-align:center;
-    font-weight:700;
-    color:var(--blue-900);
-    margin-bottom:6px;
-  }
-  .mini-cal-grid{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:2px;
-  }
-  .mini-cal-dow{
-    text-align:center;
-    font-weight:600;
-    color:var(--muted);
-    padding:2px 0;
-  }
-  .mini-cal-day{
-    text-align:center;
-    padding:3px 0;
-    border-radius:4px;
-  }
-  .mini-cal-day.today{
-    background:#eef2ff;
-    color:var(--blue-900);
-    font-weight:700;
-  }
-
-  /* CENTER: HEADING + SEARCH + PROJECTS */
-  .center-col{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    height:100%;
-  }
-  .projects-head{padding:4px 0 6px;}
-  .projects-head-grid{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:16px;}
-  .projects-head-grid h1{margin:0; text-align:center; font-size:clamp(26px,3vw,34px); font-weight:800; color:var(--blue-900);}
-  .leader{width:88px; height:88px; object-fit:cover; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.15); border:2px solid #fff;}
-  .search-under{display:flex; gap:10px; align-items:center; justify-content:center; width:100%; margin-top:10px;}
-  .input{flex:0 1 min(760px,92%); border:1px solid var(--border); border-radius:999px; padding:10px 14px; outline:none;}
-
-  .center-col section.card{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-  }
-
-  .projects{
-    flex:1;
-    padding:14px 16px;
-    display:flex;
-    flex-direction:column;
-    overflow-y:auto;
-  }
-
-  .project{
-    display:grid; grid-template-columns:34px 120px 1fr; gap:14px; padding:14px;
-    border:1px solid var(--border); border-radius:14px; margin-bottom:12px; background:#fff;
-  }
-  .project .index{font-weight:800; color:var(--blue-900); display:grid; place-items:center;}
-  .thumb{width:120px; height:90px; border-radius:10px; background:#e5e7eb; background-size:cover; background-position:center; border:1px solid var(--border);}
-  .pname{font-weight:800;}
-  .meta{font-size:13px; color:var(--muted);}
-  .brief{font-size:14px;}
-  .pagination{
-    text-align:center;
-    padding:6px 0 2px;
-    color:#6b7280;
-    font-weight:700;
-    margin-top:auto;
-  }
-
-  /* Scrollbar for project list (optional) */
-  .projects::-webkit-scrollbar{width:6px;}
-  .projects::-webkit-scrollbar-thumb{
-    background:#cbd5e1;
-    border-radius:6px;
-  }
-
-  /* FOOTER */
-  .footer{margin-top:18px; display:grid; gap:18px;}
-  .footer .cols{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
-  .footer .col{background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);}
-  .footer .col .hd{padding:12px 14px; border-bottom:1px solid var(--border); font-weight:800; color:var(--blue-900);}
-  .footer .col .bd{padding:12px 14px; font-size:14px;}
-  .footer a{color:#2563eb; text-decoration:none;} .footer a:hover{text-decoration:underline;}
-
-  /* RESPONSIVE */
-  @media (max-width:1100px){
-    .grid{grid-template-columns:1fr;}
-  }
-  @media (max-width:780px){
-    .leader{width:52px; height:52px;}
-  }
-  @media (max-width:560px){
-    .projects-head-grid{grid-template-columns:1fr;}
-    .leader{display:none;}
-  }
-  .projects-head-grid{
-  display:grid;
-  grid-template-columns:auto 1fr auto auto;
-  align-items:center;
-  gap:16px;
-}
-/* ===== MAIN MENU BAR ===== */
+/* MAIN NAV */
 .main-nav{
   background:#ffffff;
   border-bottom:1px solid var(--border);
   box-shadow:0 4px 12px rgba(0,0,0,.05);
 }
-
+.nav-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:56px;
+}
 .main-nav ul{
   list-style:none;
   margin:0;
-  padding:0 24px;
+  padding:0;
   display:flex;
   gap:28px;
-  align-items:center;
-  justify-content:center;
-  height:54px;
 }
-
-.main-nav li{}
-
 .main-nav a{
   text-decoration:none;
   font-weight:700;
@@ -303,15 +96,484 @@
   font-size:15px;
   padding:6px 10px;
   border-radius:8px;
-  transition:.2s ease;
+  transition:.2s;
 }
-
 .main-nav a:hover{
   background:#eef2ff;
   color:#1d4ed8;
 }
+.social-links{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.social-links img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  border-radius:50%;
+  transition:.2s;
+}
+.social-links img:hover{transform:scale(1.2);}
+
+/* =========================
+   HERO SLIDER (big banner)
+   UPDATED: overlay + content box
+========================= */
+/* HERO SLIDER (big banner) */
+/* HERO SLIDER (big banner) */
+.hero-slider{
+  display:block !important;
+  height:380px !important;
+  min-height:380px;
+  width:100%;
+  position:relative;
+  overflow:hidden; /* inside banner only */
+  background:#000;
+}
+.hero-track{
+  display:flex;
+  height:100%;
+  transition:transform .6s ease-in-out;
+  will-change:transform;
+}
+.hero-slide{
+  min-width:100%;
+  height:100%;
+  position:relative; /* ✅ important so overlay is per-slide */
+}
+.hero-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Dark overlay per slide */
+.hero-slide::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,.70) 0%,
+    rgba(0,0,0,.45) 55%,
+    rgba(0,0,0,.22) 100%
+  );
+}
+
+/* Transparent text box (per slide) */
+.hero-overlay{
+  position:absolute;
+  z-index:2;
+  left:clamp(18px, 5vw, 64px);
+  top:50%;
+  transform:translateY(-50%);
+  width:min(720px, 92vw);
+  padding:22px 22px 18px;
+  border-radius:14px;
+
+  background:rgba(0,0,0,.42);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  color:#fff;
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+}
+
+.hero-overlay h2{
+  margin:0 0 14px;
+  font-size:clamp(18px, 2.4vw, 30px); /* ✅ looks like your screenshot */
+  line-height:1.25;
+  font-weight:800;
+}
+
+.hero-cta{
+  display:inline-flex;
+  align-items:center;
+  padding:12px 18px;
+  border-radius:6px;
+  background:#e11d2e;
+  border:1px solid #e11d2e;
+  color:#fff;
+  font-weight:800;
+  text-decoration:none;
+  transition:.2s ease;
+}
+.hero-cta:hover{ transform:translateY(-1px); filter:brightness(1.03); }
+
+@media (max-width:560px){
+  .hero-overlay{
+    left:14px;
+    right:14px;
+    width:auto;
+    padding:16px;
+  }
+}
+
+/* PARTNER LOGO SLIDER */
+.logo-slider{
+  background:#f3f4f6;
+  padding:12px 0 16px;
+}
+.logo-rail{
+  max-width:1200px;
+  margin:0 auto;
+  background:#ffffff;
+  border-radius:20px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.logo-track{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 10px;
+  animation:logo-scroll 25s linear infinite;
+}
+.logo-rail:hover .logo-track{
+  animation-play-state:paused;
+}
+.logo-box{
+  flex:0 0 220px;
+  height:110px;
+  background:#ffffff;
+  border-radius:14px;
+  border:1px solid #cbd5e1;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+}
+.logo-box img{
+  max-width:90%;
+  max-height:80px;
+  object-fit:contain;
+}
+.logo-box:hover{
+  transform:translateY(-3px);
+  transition:.2s ease;
+}
+@keyframes logo-scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+@media (max-width:700px){
+  .logo-box{
+    flex:0 0 170px;
+    height:90px;
+  }
+  .logo-box img{max-height:60px;}
+}
+
+/* MAIN LAYOUT */
+main.wrap{
+  width:100%;
+  margin:0;
+  padding:20px 24px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.grid{
+  flex:1;
+  display:grid;
+  grid-template-columns:320px minmax(0,1fr); /* wider left card */
+  gap:20px;
+  align-items:stretch;
+}
+
+/* GENERIC CARD */
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.card.pad{padding:5px;}
+.card .hd{
+  padding:5px;
+  border-bottom:1px solid var(--border);
+  font-weight:800;
+  color:var(--blue-900);
+}
+
+/* LEFT COLUMN */
+.left-nav{
+  display:flex;
+  flex-direction:column;
+}
+.left-nav .hd{padding:10px 12px;}
+.left-nav .focus{
+  padding:24px 24px 16px;
+  flex:1;
+}
+.chip{
+  background:var(--chip);
+  border:1px solid var(--chip-border);
+  padding:10px 11px;
+  border-radius:10px;
+  margin-bottom:8px;
+  font-weight:600;
+  color:#1e293b;
+  cursor:pointer;
+  transition:.2s ease;
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  font-size:14px;
+}
+.chip::before{
+  content:"•";
+  color:var(--blue-900);
+  font-size:16px;
+  line-height:1.1;
+}
+.chip:hover{
+  background:#4338ca;
+  color:#fff;
+  border-color:#4338ca;
+}
+.chip.active{
+  background:#2563eb;
+  color:#fff;
+  border-color:#1e40af;
+}
+
+/* Upcoming events */
+.events-left{
+  margin:0 16px 16px;
+}
+.events-left .hd{
+  border:0;
+  padding:0 0 8px 0;
+}
+.events-left ul{
+  margin:8px 0 0 18px;
+  padding:0;
+}
+.events-left li{
+  margin-bottom:6px;
+}
+
+/* Mini calendar */
+.mini-cal{
+  margin-top:10px;
+  border-top:1px solid var(--border);
+  padding-top:10px;
+  font-size:12px;
+}
+.mini-cal-head{
+  text-align:center;
+  font-weight:700;
+  color:var(--blue-900);
+  margin-bottom:6px;
+}
+.mini-cal-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:2px;
+}
+.mini-cal-dow{
+  text-align:center;
+  font-weight:600;
+  color:var(--muted);
+  padding:2px 0;
+}
+.mini-cal-day{
+  text-align:center;
+  padding:3px 0;
+  border-radius:4px;
+}
+.mini-cal-day.today{
+  background:#eef2ff;
+  color:#0f2d66;
+  font-weight:700;
+}
+
+/* CENTER COLUMN */
+.center-col{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  height:100%;
+}
+.projects-head-grid{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:16px;
+}
+.leaders-left,
+.leaders-right{
+  display:flex;
+  gap:8px;
+}
+.projects-head-grid h1{
+  margin:0;
+  text-align:center;
+  font-size:clamp(26px,3vw,34px);
+  font-weight:800;
+  color:var(--blue-900);
+}
+.leader{
+  width:88px;
+  height:88px;
+  object-fit:cover;
+  border-radius:10px;
+  box-shadow:0 4px 14px rgba(0,0,0,.15);
+  border:2px solid #fff;
+}
+.search-under{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  margin-top:10px;
+}
+.input{
+  flex:0 1 min(760px,92%);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:10px 14px;
+  outline:none;
+}
+
+/* Projects card fills full height */
+.projects-card{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.projects{
+  flex:1;
+  padding:14px 16px;
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;
+}
+.project{
+  display:grid;
+  grid-template-columns:34px 120px 1fr;
+  gap:14px;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  margin-bottom:12px;
+  background:#fff;
+}
+.project .index{
+  font-weight:800;
+  color:var(--blue-900);
+  display:grid;
+  place-items:center;
+}
+.thumb{
+  width:120px;
+  height:90px;
+  border-radius:10px;
+  background:#e5e7eb;
+  background-size:cover;
+  background-position:center;
+  border:1px solid var(--border);
+}
+.pname{font-weight:800;}
+.meta{font-size:13px; color:var(--muted);}
+.brief{font-size:14px;}
+.pagination{
+  text-align:center;
+  padding:6px 0 2px;
+  color:#6b7280;
+  font-weight:700;
+  margin-top:auto;
+}
+.projects::-webkit-scrollbar{width:6px;}
+.projects::-webkit-scrollbar-thumb{
+  background:#cbd5e1;
+  border-radius:6px;
+}
+
+/* FOOTER */
+.footer{
+  margin-top:18px;
+  display:grid;
+  gap:18px;
+}
+.footer .cols{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.footer .col{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.footer .col .hd{
+  padding:12px 14px;
+  border-bottom:1px solid var(--border);
+  font-weight:800;
+  color:var(--blue-900);
+}
+.footer .col .bd{
+  padding:12px 14px;
+  font-size:14px;
+}
+.footer a{
+  color:#2563eb;
+  text-decoration:none;
+}
+.footer a:hover{text-decoration:underline;}
+
+/* RESPONSIVE */
+@media (max-width:1100px){
+  .grid{grid-template-columns:1fr;}
+}
+@media (max-width:780px){
+  .leader{width:52px; height:52px;}
+}
+@media (max-width:560px){
+  .projects-head-grid{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .leaders-left,
+  .leaders-right{
+    justify-content:center;
+  }
+
+  /* Make banner box fit nicely on small screens */
+  .hero-overlay{
+    left:14px;
+    right:14px;
+    width:auto;
+    padding:18px;
+  }
+  .hero-overlay h2{
+    font-size:26px;
+  }
+}
 
 </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rotary Service Project – RI Dist. 3191</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -323,92 +585,157 @@
     </div>
     <div class="title-center">Rotary Service Project – RI Dist. 3191</div>
     <div class="user">
-      <div class="avatar">MK</div>
-      <button class="btn">Login / Logout</button>
+      <button class="btn">Login</button>
     </div>
   </div>
-<!-- MAIN NAV MENU -->
-<nav class="main-nav">
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">District Leadership</a></li>
-    <li><a href="#">Service Projects</a></li>
-    <li><a href="#">Clubs</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</nav>
 
-  <!-- BANNER IMAGE -->
- <section class="banner">
-  <img src="images/img1.png" class="banner-full" alt="Rotary Banner">
-</section>
+  <!-- MAIN NAV MENU -->
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">District Leadership</a></li>
+        <li><a href="#">Service Projects</a></li>
+        <li><a href="#">Clubs</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
 
-  <!-- SLIDING PARTNER / CLUB LOGOS -->
-<section class="logo-slider">
-  <div class="logo-rail">
-    <div class="logo-track">
-      <!-- main set of logos -->
-      <a class="logo-box" href="https://gurugoutam.com/" target="_blank" rel="noopener noreferrer">
-        <img src="images/cropped-cropped-nav-logo.png" alt="Guru Goutam Infotech">
-      </a>
-      <a class="logo-box" href="https://prowessrpl.com/" target="_blank" rel="noopener noreferrer">
-        <img src="images/PROWESS.png" alt="Prowess Resources Pvt Ltd">
-      </a>
-      <a class="logo-box" href="https://example3.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/logo3.png" alt="Partner 3">
-      </a>
-      <a class="logo-box" href="https://example4.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/logo4.png" alt="Partner 4">
-      </a>
-      <a class="logo-box" href="https://example5.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/logo5.png" alt="Partner 5">
-      </a>
-      <a class="logo-box" href="https://example6.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/logo6.png" alt="Partner 6">
-      </a>
-
-      <!-- duplicate same logos for seamless loop -->
-      <a class="logo-box" href="https://gurugoutam.com/" target="_blank" rel="noopener noreferrer">
-        <img src="images/cropped-cropped-nav-logo.png" alt="Guru Goutam Infotech">
-      </a>
-      <a class="logo-box" href="https://prowessrpl.com/" target="_blank" rel="noopener noreferrer">
-        <img src="images/PROWESS.png" alt="Prowess Resources Pvt Ltd">
-      </a>
-      <a class="logo-box" href="https://example3.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/logo3.png" alt="Partner 3">
-      </a>
-      <a class="logo-box" href="https://example4.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/logo4.png" alt="Partner 4">
-      </a>
-      <a class="logo-box" href="https://example5.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/logo5.png" alt="Partner 5">
-      </a>
-      <a class="logo-box" href="https://example6.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/logo6.png" alt="Partner 6">
-      </a>
+      <div class="social-links">
+        <a href="#" target="_blank" aria-label="Facebook">
+          <img src="images/fb.png" alt="Facebook">
+        </a>
+        <a href="#" target="_blank" aria-label="Instagram">
+          <img src="images/insta.png" alt="Instagram">
+        </a>
+        <a href="#" target="_blank" aria-label="YouTube">
+          <img src="images/you.png" alt="YouTube">
+        </a>
+      </div>
     </div>
+  </nav>
+
+  <!-- 🔵 HERO IMAGE SLIDER (5 slides, NO dots) -->
+  <section class="hero-slider" id="hero-slider">
+  <div class="hero-track" id="hero-track">
+
+    <!-- SLIDE 1 -->
+    <div class="hero-slide">
+      <img src="images/slide1.jpeg" alt="Slide 1">
+
+      <div class="hero-overlay">
+        <h2>January is vocational service month.<br>Learn more on our projects.</h2>
+        <a class="hero-cta" href="#">LEARN MORE →</a>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="hero-slide">
+      <img src="images/slide2.jpeg" alt="Slide 2">
+
+      <div class="hero-overlay">
+        <h2>End Polio Now.<br>Join our awareness drive.</h2>
+        <a class="hero-cta" href="#">VIEW CAMPAIGN →</a>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="hero-slide">
+      <img src="images/slide3.jpeg" alt="Slide 3">
+
+      <div class="hero-overlay">
+        <h2>1,000 Trees Planted.<br>Protecting our environment.</h2>
+        <a class="hero-cta" href="#">SEE IMPACT →</a>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="hero-slide">
+      <img src="images/slide4.jpeg" alt="Slide 4">
+
+      <div class="hero-overlay">
+        <h2>Maternal &amp; Child Health.<br>Care that reaches communities.</h2>
+        <a class="hero-cta" href="#">EXPLORE →</a>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="hero-slide">
+      <img src="images/slide5.jpeg" alt="Slide 5">
+
+      <div class="hero-overlay">
+        <h2>Education &amp; Literacy Projects.<br>Support a brighter future.</h2>
+        <a class="hero-cta" href="#">SUPPORT NOW →</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
+  <!-- PARTNER / CLUB LOGO SLIDER -->
+  <section class="logo-slider">
+    <div class="logo-rail">
+      <div class="logo-track">
+        <!-- main set of logos -->
+        <a class="logo-box" href="https://gurugoutam.com/" target="_blank" rel="noopener noreferrer">
+          <img src="images/cropped-cropped-nav-logo.png" alt="Guru Goutam Infotech">
+        </a>
+        <a class="logo-box" href="https://prowessrpl.com/" target="_blank" rel="noopener noreferrer">
+          <img src="images/PROWESS.png" alt="Prowess Resources Pvt Ltd">
+        </a>
+        <a class="logo-box" href="#" target="_blank" rel="noopener noreferrer">
+          <img src="images/logo3.png" alt="Partner 3">
+        </a>
+        <a class="logo-box" href="#" target="_blank" rel="noopener noreferrer">
+          <img src="images/logo4.png" alt="Partner 4">
+        </a>
+        <a class="logo-box" href="#" target="_blank" rel="noopener noreferrer">
+          <img src="images/logo5.png" alt="Partner 5">
+        </a>
+        <a class="logo-box" href="#" target="_blank" rel="noopener noreferrer">
+          <img src="images/logo6.png" alt="Partner 6">
+        </a>
 
-  <!-- MAIN GRID -->
+        <!-- duplicate set for smooth loop -->
+        <a class="logo-box" href="https://gurugoutam.com/" target="_blank" rel="noopener noreferrer">
+          <img src="images/cropped-cropped-nav-logo.png" alt="Guru Goutam Infotech">
+        </a>
+        <a class="logo-box" href="https://prowessrpl.com/" target="_blank" rel="noopener noreferrer">
+          <img src="images/PROWESS.png" alt="Prowess Resources Pvt Ltd">
+        </a>
+        <a class="logo-box" href="#" target="_blank" rel="noopener noreferrer">
+          <img src="images/logo3.png" alt="Partner 3">
+        </a>
+        <a class="logo-box" href="#" target="_blank" rel="noopener noreferrer">
+          <img src="images/logo4.png" alt="Partner 4">
+        </a>
+        <a class="logo-box" href="#" target="_blank" rel="noopener noreferrer">
+          <img src="images/logo5.png" alt="Partner 5">
+        </a>
+        <a class="logo-box" href="#" target="_blank" rel="noopener noreferrer">
+          <img src="images/logo6.png" alt="Partner 6">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
   <main class="wrap">
     <div class="grid">
 
-      <!-- LEFT: FOCUS AREAS + UPCOMING EVENTS -->
+      <!-- LEFT COLUMN -->
       <aside class="card left-nav">
         <div class="hd">Rotary 7 Focus Area</div>
         <div class="focus">
-          <div class="chip" data-focus="peace">Peace Building & Conflict Prevention</div>
-          <div class="chip" data-focus="disease">Disease Prevention & Treatment</div>
-          <div class="chip" data-focus="water">Water, Sanitation & Hygiene</div>
-          <div class="chip" data-focus="maternal">Maternal & Child Health</div>
-          <div class="chip" data-focus="education">Basic Education & Literacy</div>
+          <div class="chip" data-focus="peace">Peace Building &amp; Conflict Prevention</div>
+          <div class="chip" data-focus="disease">Disease Prevention &amp; Treatment</div>
+          <div class="chip" data-focus="water">Water, Sanitation &amp; Hygiene</div>
+          <div class="chip" data-focus="maternal">Maternal &amp; Child Health</div>
+          <div class="chip" data-focus="education">Basic Education &amp; Literacy</div>
           <div class="chip" data-focus="economic">Community Economic Development</div>
           <div class="chip" data-focus="environment">Protecting Our Environment</div>
         </div>
 
-        <!-- LEFT: Upcoming Events (boxed) -->
+        <!-- Upcoming Events + small calendar -->
         <div class="card pad events-left">
           <div class="hd" style="border:0; padding:0 0 8px 0;">Upcoming Events</div>
           <ul>
@@ -419,7 +746,6 @@
             <li>Ambari Dist. Conference</li>
           </ul>
 
-          <!-- Small calendar inside Upcoming Events -->
           <div class="mini-cal">
             <div class="mini-cal-head" id="mini-cal-title">Month 2025</div>
             <div class="mini-cal-grid" id="mini-cal-grid"></div>
@@ -427,25 +753,30 @@
         </div>
       </aside>
 
-      <!-- CENTER: HEADING + SEARCH + PROJECTS -->
+      <!-- CENTER COLUMN: SERVICE PROJECTS -->
       <div class="center-col">
-
-        <div class="projects-head">
-          <div class="projects-head-grid">
-            <img src="images/anil.png" alt="Leader Left" class="leader">
-            <h1>Service Projects</h1>
-            <img src="images/images.jfif" alt="Center Logo" class="leader center-img">
-            <img src="images/pres.png" alt="Leader Right" class="leader">
+        <div class="projects-head-grid">
+          <div class="leaders-left">
+            <img src="images/anil.png" class="leader" alt="Leader 1">
+            <img src="images/vijay.jpg" class="leader" alt="Leader 2">
           </div>
 
-          <div class="search-under">
-            <input class="input" type="text" placeholder="Search a service..." />
-            <button class="btn">Search</button>
+          <h1>Service Projects</h1>
+
+          <div class="leaders-right">
+            <img src="images/pres.png" class="leader" alt="Leader 3">
+            <img src="images/kpn.jfif" class="leader" alt="Leader 4">
           </div>
         </div>
 
-        <section class="card">
+        <div class="search-under">
+          <input class="input" type="text" placeholder="Search a service..." />
+          <button class="btn">Search</button>
+        </div>
+
+        <section class="card projects-card">
           <div class="projects">
+            <!-- PROJECT 1 -->
             <article class="project" data-focus="water">
               <div class="index">1.</div>
               <div class="thumb" style="background-image:url('images/wa.jpg');"></div>
@@ -459,6 +790,7 @@
               </div>
             </article>
 
+            <!-- PROJECT 2 -->
             <article class="project" data-focus="environment">
               <div class="index">2.</div>
               <div class="thumb" style="background-image:url('images/trr.jpg');"></div>
@@ -470,18 +802,6 @@
                 </div>
               </div>
             </article>
-             <article class="project" data-focus="environment">
-              <div class="index">3.</div>
-              <div class="thumb" style="background-image:url('images/trr.jpg');"></div>
-              <div class="content">
-                <div class="pname">Project Name: Tree Plantation</div>
-                <div class="meta">Club: Rotary Basavanagudi • Date: 05-06-2025</div>
-                <div class="brief">
-                  1,000 saplings planted near Kolar with participation from multiple clubs and local community.
-                </div>
-              </div>
-            </article>
-            
 
             <div class="pagination">&lt; 1 2 3 4 5 6 &gt;</div>
           </div>
@@ -512,8 +832,8 @@
         <div class="col">
           <div class="hd">Contact Us</div>
           <div class="bd">
-            DG Office Address<br />
-            DG Office Email: <a href="mailto:office@example.org">office@example.org</a><br />
+            DG Office Address<br>
+            DG Office Email: <a href="mailto:office@example.org">office@example.org</a><br>
             DG Office Phone: +91 1234567890
           </div>
         </div>
@@ -521,73 +841,94 @@
     </footer>
   </main>
 
-<script>
-/* Focus chip active toggle (filter ready) */
-document.querySelectorAll('.chip').forEach(chip=>{
-  chip.addEventListener('click', ()=>{
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-    chip.classList.add('active');
-    // const focus = chip.dataset.focus;
-    // document.querySelectorAll('.project').forEach(p=>{
-    //   p.style.display = (!focus || p.dataset.focus===focus) ? 'grid' : 'none';
-    // });
-  });
-});
+  <!-- JS: HERO SLIDER (no dots) + MINI CALENDAR + CHIP ACTIVE STATE -->
+  <script>
+    // HERO SLIDER (auto slide, no dots)
+    (function(){
+      const track  = document.getElementById('hero-track');
+      const slider = document.getElementById('hero-slider');
+      if(!track || !slider) return;
 
-/* Mini calendar inside Upcoming Events – current month only */
-(function(){
-  const titleEl = document.getElementById('mini-cal-title');
-  const gridEl  = document.getElementById('mini-cal-grid');
-  if(!titleEl || !gridEl) return;
+      const total  = track.children.length;
+      let current  = 0;
+      let timer    = null;
 
-  const MONTHS = ['January','February','March','April','May','June',
-                  'July','August','September','October','November','December'];
-  const DOW    = ['S','M','T','W','T','F','S']; // Sunday first
+      function goToSlide(i){
+        current = (i + total) % total;
+        track.style.transform = 'translateX(' + (-100 * current) + '%)';
+      }
 
-  function renderMini(){
-    const today = new Date();
-    const y = today.getFullYear();
-    const m = today.getMonth();
+      function start(){
+        stop();
+        timer = setInterval(() => goToSlide(current + 1), 5000);
+      }
 
-    titleEl.textContent = `${MONTHS[m].slice(0,3)} ${y}`;
-    gridEl.innerHTML = '';
+      function stop(){
+        if(timer){ clearInterval(timer); timer = null; }
+      }
 
-    // day-of-week row
-    DOW.forEach(d=>{
-      const el = document.createElement('div');
-      el.className = 'mini-cal-dow';
-      el.textContent = d;
-      gridEl.appendChild(el);
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+
+      goToSlide(0);
+      start();
+    })();
+
+    // Focus chip active toggle (visual only)
+    document.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+      });
     });
 
-    const first = new Date(y, m, 1);
-    const startDow = first.getDay();              // 0=Sun..6=Sat
-    const daysInMonth = new Date(y, m+1, 0).getDate();
+    // MINI CALENDAR
+    (function(){
+      const titleEl = document.getElementById('mini-cal-title');
+      const gridEl  = document.getElementById('mini-cal-grid');
+      if(!titleEl || !gridEl) return;
 
-    // leading blanks
-    for(let i=0;i<startDow;i++){
-      const blank = document.createElement('div');
-      blank.className = 'mini-cal-day';
-      blank.textContent = '';
-      gridEl.appendChild(blank);
-    }
+      const MONTHS = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+      const DOW    = ['S','M','T','W','T','F','S'];
 
-    // actual days
-    for(let d=1; d<=daysInMonth; d++){
-      const el = document.createElement('div');
-      el.className = 'mini-cal-day';
-      el.textContent = d;
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = today.getMonth();
 
-      if(d === today.getDate()){
-        el.classList.add('today');
+      titleEl.textContent = MONTHS[m].slice(0,3) + ' ' + y;
+      gridEl.innerHTML = '';
+
+      DOW.forEach(d=>{
+        const el = document.createElement('div');
+        el.className = 'mini-cal-dow';
+        el.textContent = d;
+        gridEl.appendChild(el);
+      });
+
+      const first = new Date(y, m, 1);
+      const startDow = first.getDay();
+      const daysInMonth = new Date(y, m+1, 0).getDate();
+
+      for(let i=0;i<startDow;i++){
+        const blank = document.createElement('div');
+        blank.className = 'mini-cal-day';
+        gridEl.appendChild(blank);
       }
-      gridEl.appendChild(el);
-    }
-  }
 
-  renderMini();
-})();
-</script>
+      for(let d=1; d<=daysInMonth; d++){
+        const el = document.createElement('div');
+        el.className = 'mini-cal-day';
+        el.textContent = d;
+        if(d === today.getDate()){
+          el.classList.add('today');
+        }
+        gridEl.appendChild(el);
+      }
+    })();
+  </script>
 </body>
 </html>
+
+
 
